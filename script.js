@@ -17,7 +17,7 @@ const MOODS = [
 ]
 
 $(document).ready(() => {
-  
+
   MOODS.forEach((mood, idx) => {
     const title = mood[0];
     const composer = mood[1];
@@ -31,8 +31,8 @@ $(document).ready(() => {
     $("#contents").append(`
     `)
   })
-  
-  
+
+
   $(".mood").on("change", function() {
     const idx = parseInt($(this).attr("data-idx"))
     const mood = MOODS[idx]
@@ -46,47 +46,47 @@ $(document).ready(() => {
   <span>${composer} — <em>${piece}</em></span>
   <div class="yt-wrapper"></div>
   <div class="buttons-out">
-    <a href="https://play.spotify.com/search/${composer.replace(/ /g, '%20')}%20${piece.replace(/ /g, '%20')}" title="Find this song on Spotify"><i class="fab fa-spotify"></i></a>
-    <a href="https://www.youtube.com/watch?v=${youtube}" title="Play this song on YouTube"><i class="fab fa-youtube"></i></a>
-    <a href="https://play.google.com/music/listen#/sr/${composer.replace(/ /g, '+')}+${piece.replace(/ /g, '+')}" title="Play this song on Google Play Music"><i class="fab fa-google-play"></i></a>
-    <a href="#" title="Play this song on iTunes" class="itunes-link"></a>
+    <a class="window" href="https://play.spotify.com/search/${composer.replace(/ /g, '%20')}%20${piece.replace(/ /g, '%20')}" title="Find this song on Spotify"><i class="fab fa-spotify"></i></a>
+    <a class="window" href="https://www.youtube.com/watch?v=${youtube}" title="Play this song on YouTube"><i class="fab fa-youtube"></i></a>
+    <!-- <a class="window" href="https://play.google.com/music/listen#/sr/${composer.replace(/ /g, '+')}+${piece.replace(/ /g, '+')}" title="Play this song on Google Play Music"><i class="fab fa-google-play"></i></a>
+    <a href="#" title="Play this song on iTunes" class="itunes-link window "></a> -->
   </div>
 </div>
 `)
-    $('.yt-wrapper').append(
-<iframe 
+  const width = $('.mood-pane').width()
+  const height = (315 / 560) * width
+    $('.yt-wrapper').append(`<iframe
   class="yt-embed"
-  width="${width}" 
-  height="${height}" 
-  src="https://www.youtube.com/embed/${yt}" 
-  frameborder="0" 
-  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+  width="${width}"
+  height="${height}"
+  src="https://www.youtube.com/embed/${youtube}"
+  frameborder="0"
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
   allowfullscreen
 >
 </iframe>`)
-    
+    $('.itunes-link').html('').html(itunes_svg)
+
     if($( document ).width() < mobile_breakpoint) {
-    
-      
+
+
     } else {
-      
+
     }
     // $(".yt-embed").remove()
     // const yt = $(this).attr("data-yt")
-    // const width = $(this).width()
-    // const height = (315 / 560) * width
     // newMood.find(".yt-wrapper").append(`
-    //   <iframe 
+    //   <iframe
     //     class="yt-embed"
-    //     width="${width}" 
-    //     height="${height}" 
-    //     src="https://www.youtube.com/embed/${yt}" 
-    //     frameborder="0" 
-    //     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
+    //     width="${width}"
+    //     height="${height}"
+    //     src="https://www.youtube.com/embed/${yt}"
+    //     frameborder="0"
+    //     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
     //     allowfullscreen
     //   >
     //   </iframe>`)
-    // $(".itunes-link").html("")
-    // newMood.find(".itunes-link").html(itunes_svg)
+    //
+    // newMood
   })
 })
